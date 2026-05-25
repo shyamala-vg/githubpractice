@@ -17,13 +17,22 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Show files in repo
+        run: |
+          pwd
+          ls -la
+
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest flake8
+
+      - name: Show installed packages
+        run: pip list
 
       - name: Run lint
         run: flake8 .
 
       - name: Run tests
-        run: pytest
+        run: pytest -v
